@@ -1,0 +1,115 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Enhanced Founder Dashboard with Task Assignment View and Employee Work Submission",
+  "requirements": [
+    {
+      "id": "REQ-30",
+      "summary": "Create a comprehensive founder dashboard overview section that displays aggregated overall progress metrics across all projects including total tasks count, completed tasks count, overall completion percentage, and active projects count",
+      "acceptanceCriteria": [
+        "Dashboard shows total number of tasks across all projects",
+        "Dashboard displays count of completed tasks",
+        "Dashboard calculates and shows overall completion percentage",
+        "Dashboard shows number of active projects",
+        "Metrics are visually prominent and easy to read"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FounderDashboard.tsx",
+          "operation": "modify",
+          "description": "Add a new overview metrics section at the top of the dashboard displaying aggregate statistics. Calculate total tasks count from all fetched tasks, count completed tasks (status === 'completed'), compute overall completion percentage, and display active projects count. Render these metrics in prominent card components using shadcn/ui Card components with icons and large typography for visibility. Place this section above the existing ProjectProgressCard grid."
+        },
+        {
+          "path": "frontend/src/components/DashboardMetricsOverview.tsx",
+          "operation": "create",
+          "description": "Create a new component that renders four metric cards in a responsive grid layout: Total Tasks, Completed Tasks, Overall Completion %, and Active Projects. Each card should use shadcn/ui Card component with an icon, label, and large numeric value. Accept tasks and projects arrays as props and compute the metrics internally. Use appropriate icons from lucide-react (CheckSquare, ListTodo, TrendingUp, FolderOpen). Style cards with subtle borders and hover effects."
+        }
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "summary": "Add a dedicated task assignment column or section to the founder dashboard that displays a table or list view showing which employee is assigned to which task, including task title, project name, assigned employee name, completion date, and priority level",
+      "acceptanceCriteria": [
+        "Column displays all task assignments in a clear table or card layout",
+        "Each row shows task title, assigned employee name, project name, completion/due date, and priority badge",
+        "Data is sortable by employee, project, or due date",
+        "Visual indicators differentiate between completed and pending tasks",
+        "Layout integrates seamlessly with existing dashboard components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FounderDashboard.tsx",
+          "operation": "modify",
+          "description": "Add a new dedicated task assignments section below the overview metrics. Include a prominent section heading 'Task Assignments' and render the new TaskAssignmentsTable component, passing the tasks and users data. Position this section between the metrics overview and the existing tabbed project/employee views to provide clear visibility of all task assignments."
+        },
+        {
+          "path": "frontend/src/components/TaskAssignmentsTable.tsx",
+          "operation": "create",
+          "description": "Create a comprehensive table component displaying task assignments. Use shadcn/ui Table component with columns: Task Title, Assigned Employee, Project Name, Due Date, Priority, and Status. Fetch user profiles using useGetAllUsers hook (or derive names from task assignedEmployee principals via backend getUserProfile calls). Implement sortable column headers using React state for sort field and direction. Apply visual styling: completed tasks with muted text/strikethrough, overdue tasks with red accent, priority badges using existing taskUtils.getPriorityBadgeClasses. Include status icons (CheckCircle for completed, Clock for in progress, Circle for pending). Make rows clickable to navigate to task detail page. Handle loading and empty states gracefully."
+        },
+        {
+          "path": "frontend/src/hooks/useGetUserName.ts",
+          "operation": "create",
+          "description": "Create a custom hook that accepts a Principal and returns the user's name by calling actor.getUserProfile(principal). Use React Query with caching to avoid redundant calls. Return the profile name or a fallback string 'Unknown User' if profile is not found. Enable this query only when actor is available and principal is provided."
+        }
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "summary": "Implement access control restrictions on the employee task view (MyTasksPage) to ensure employees can only see their own assigned tasks and cannot view tasks assigned to other employees",
+      "acceptanceCriteria": [
+        "Employee users only see tasks assigned to them when viewing their tasks page",
+        "Backend query filters tasks by caller identity to enforce access control",
+        "Employees cannot access task lists that would reveal other employees' assignments",
+        "Navigation and UI elements do not expose routes or views showing other employees' tasks to non-admin users",
+        "Admin/founder users retain ability to view all tasks and assignments"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MyTasksPage.tsx",
+          "operation": "modify",
+          "description": "Verify the page already uses useGetAssignedTasks hook which calls the backend getAssignedTasks method that filters by caller identity. Ensure no additional logic attempts to filter or display other users' tasks. Confirm the page only displays tasks returned from useGetAssignedTasks. Add a comment clarifying that access control is enforced by the backend getAssignedTasks method which uses the authorization component to filter tasks by caller principal."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add conditional navigation rendering based on user role. For non-admin users (employees), hide or remove navigation links to TasksByEmployeeView, TasksByProjectView, full task lists, or any views that expose other employees' work. Use useGetCallerUserRole hook to determine if the user is an admin. Admin users should see all navigation items (Dashboard, Projects, All Tasks, My Tasks, Templates, Gantt, Workload, Reports). Employee users should only see: My Tasks, Profile Settings, and optionally Projects (read-only). Ensure the navigation clearly reflects role-based access."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route guards for admin-only pages. Wrap routes for Dashboard (/dashboard), All Tasks (/tasks), Gantt Chart (/gantt), Workload View (/workload), Reports (/reports), and Task Templates (/templates) with an authorization check using useGetCallerUserRole. If the user is not an admin, redirect to /my-tasks or display the AccessDeniedScreen component. Allow all authenticated users to access /my-tasks, /profile-settings, and /projects (read-only). Ensure the route guard logic executes after authentication and profile setup are complete."
+        }
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "summary": "Add work submission functionality for employees allowing them to submit their completed work for a task, which updates the task status to completed and records the submission timestamp",
+      "acceptanceCriteria": [
+        "Employee task view includes a 'Submit Work' or 'Mark as Complete' button for tasks in progress",
+        "Clicking submit updates the task status to completed in the backend",
+        "Backend records the submission timestamp when work is submitted",
+        "Task progress is automatically set to 100% when work is submitted",
+        "Completed status is immediately reflected in the founder dashboard and all task views",
+        "Employees can only submit work for tasks assigned to them"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MyTasksPage.tsx",
+          "operation": "modify",
+          "description": "Add a 'Submit Work' button to each task card displayed on the employee's task list. Use conditional rendering to show the button only for tasks with status 'inProgress' or 'pending'. When clicked, call the new useSubmitWorkForTask mutation hook, passing the task id. Disable the button during submission and show a loading indicator. Upon success, display a success toast notification and the task list will automatically refresh showing the updated status."
+        },
+        {
+          "path": "frontend/src/components/EmployeeTaskCard.tsx",
+          "operation": "modify",
+          "description": "Add a 'Submit Work' action button to the task card component. Position the button prominently in the card footer or actions section. Show the button only when task status is 'pending' or 'inProgress'. Use the useSubmitWorkForTask hook to handle submission. Display a loading spinner on the button during submission. Style the button with a success/completion color (green) to indicate finalization. After successful submission, the card will reflect the completed status through automatic query invalidation."
+        },
+        {
+          "path": "frontend/src/hooks/useSubmitWorkForTask.ts",
+          "operation": "create",
+          "description": "Create a React Query mutation hook that calls actor.submitWorkForTask(taskId). On success, invalidate the ['assignedTasks'] and ['allTasks'] query keys to refresh task data across all views. The backend method submitWorkForTask handles status update, timestamp recording, and setting progress to 100%. Return the mutation object with loading, error, and success states for UI feedback."
+        }
+      ]
+    }
+  ]
+}

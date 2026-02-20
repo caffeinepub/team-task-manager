@@ -1,0 +1,92 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-comprehensive-founder-dashboard-overview-section-that-displays-aggregated-overall-progress-metrics-across-all-projects-including-total-tasks-count-completed-tasks-count-overall-completion-percentage-and-active-projects-count",
+      "featureTitle": "Create a comprehensive founder dashboard overview section that displays aggregated overall progress metrics across all projects including total tasks count, completed tasks count, overall completion percentage, and active projects count",
+      "files": [
+        "frontend/src/components/DashboardMetricsOverview.tsx",
+        "frontend/src/pages/FounderDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-30"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-dedicated-task-assignment-column-or-section-to-the-founder-dashboard-that-displays-a-table-or-list-view-showing-which-employee-is-assigned-to-which-task-including-task-title-project-name-assigned-employee-name-completion-date-and-priority-level",
+      "featureTitle": "Add a dedicated task assignment column or section to the founder dashboard that displays a table or list view showing which employee is assigned to which task, including task title, project name, assigned employee name, completion date, and priority level",
+      "files": [
+        "frontend/src/components/TaskAssignmentsTable.tsx",
+        "frontend/src/hooks/useGetUserName.ts",
+        "frontend/src/pages/FounderDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-31"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-access-control-restrictions-on-the-employee-task-view-mytaskspage-to-ensure-employees-can-only-see-their-own-assigned-tasks-and-cannot-view-tasks-assigned-to-other-employees",
+      "featureTitle": "Implement access control restrictions on the employee task view (MyTasksPage) to ensure employees can only see their own assigned tasks and cannot view tasks assigned to other employees",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/pages/MyTasksPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-32"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-work-submission-functionality-for-employees-allowing-them-to-submit-their-completed-work-for-a-task-which-updates-the-task-status-to-completed-and-records-the-submission-timestamp",
+      "featureTitle": "Add work submission functionality for employees allowing them to submit their completed work for a task, which updates the task status to completed and records the submission timestamp",
+      "files": [
+        "frontend/src/components/EmployeeTaskCard.tsx",
+        "frontend/src/hooks/useSubmitWorkForTask.ts",
+        "frontend/src/pages/MyTasksPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-33"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

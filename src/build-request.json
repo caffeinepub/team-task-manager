@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Enhanced Founder Dashboard with Task Assignment View and Employee Work Submission",
+  "projectName": "Team Task Manager",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-30",
+      "text": "Create a comprehensive founder dashboard overview section that displays aggregated overall progress metrics across all projects including total tasks count, completed tasks count, overall completion percentage, and active projects count",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "they should be able to see the overall progress , dashboard including every progress"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard shows total number of tasks across all projects",
+        "Dashboard displays count of completed tasks",
+        "Dashboard calculates and shows overall completion percentage",
+        "Dashboard shows number of active projects",
+        "Metrics are visually prominent and easy to read"
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "text": "Add a dedicated task assignment column or section to the founder dashboard that displays a table or list view showing which employee is assigned to which task, including task title, project name, assigned employee name, completion date, and priority level",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "one such column where they can see which employee is given which task , then a project creator inside it task created, then it completion date, prority"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Column displays all task assignments in a clear table or card layout",
+        "Each row shows task title, assigned employee name, project name, completion/due date, and priority badge",
+        "Data is sortable by employee, project, or due date",
+        "Visual indicators differentiate between completed and pending tasks",
+        "Layout integrates seamlessly with existing dashboard components"
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "text": "Implement access control restrictions on the employee task view (MyTasksPage) to ensure employees can only see their own assigned tasks and cannot view tasks assigned to other employees",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "the employee will have no other access to do,neither can they see other employees work"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Employee users only see tasks assigned to them when viewing their tasks page",
+        "Backend query filters tasks by caller identity to enforce access control",
+        "Employees cannot access task lists that would reveal other employees' assignments",
+        "Navigation and UI elements do not expose routes or views showing other employees' tasks to non-admin users",
+        "Admin/founder users retain ability to view all tasks and assignments"
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "text": "Add work submission functionality for employees allowing them to submit their completed work for a task, which updates the task status to completed and records the submission timestamp",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "it can also let the employee submmit their work, then it should show as completed"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Employee task view includes a 'Submit Work' or 'Mark as Complete' button for tasks in progress",
+        "Clicking submit updates the task status to completed in the backend",
+        "Backend records the submission timestamp when work is submitted",
+        "Task progress is automatically set to 100% when work is submitted",
+        "Completed status is immediately reflected in the founder dashboard and all task views",
+        "Employees can only submit work for tasks assigned to them"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the existing authentication system or Internet Identity integration",
+    "Maintain the single-actor architecture in backend/main.mo",
+    "Preserve all existing task management features including time tracking, attachments, comments, and dependencies",
+    "Keep the role-based access control system for founder/admin vs employee users intact"
+  ],
+  "nonGoals": [
+    "Creating new project management features beyond dashboard visibility",
+    "Modifying the existing task creation or assignment workflows",
+    "Adding new notification systems beyond existing overdue task alerts",
+    "Changing the visual theme or color scheme",
+    "Implementing approval workflows for submitted work"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

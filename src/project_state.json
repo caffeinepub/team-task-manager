@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 11,
+  "summary": "School management app where users can log in and select their role (teacher or admin), with task assignment, project tracking, due dates, progress monitoring, dashboard with progress reports, and notifications for overdue tasks",
+  "architectural_notes": [
+    "Multi-user system with founder and employee roles",
+    "Real-time notification system for overdue task alerts",
+    "Dashboard with aggregated progress metrics",
+    "Role selection system allowing users to choose between teacher and admin roles",
+    "Permission system enforcing employees can only view their own tasks",
+    "Work submission workflow with completion tracking"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-user-authentication-system-that-distinguishes-between-founder-admin-users-and-employee-users-using-internet-identity",
+      "title": "Create a user authentication system that distinguishes between founder/admin users and employee users using Internet Identity",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-project-management-system-where-founders-can-create-projects-with-name-description-and-associate-multiple-tasks-to-each-project",
+      "title": "Implement a project management system where founders can create projects with name, description, and associate multiple tasks to each project",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-task-assignment-system-where-founders-can-create-tasks-with-title-description-assigned-employee-due-date-and-progress-percentage",
+      "title": "Create a task assignment system where founders can create tasks with title, description, assigned employee, due date, and progress percentage",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-employee-task-view-where-employees-can-see-their-assigned-tasks-update-progress-percentage-and-mark-tasks-as-complete",
+      "title": "Build an employee task view where employees can see their assigned tasks, update progress percentage, and mark tasks as complete",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-founder-dashboard-that-displays-all-projects-tasks-assigned-employees-progress-percentages-and-completion-status-with-visual-progress-indicators",
+      "title": "Create a founder dashboard that displays all projects, tasks, assigned employees, progress percentages, and completion status with visual progress indicators",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-overdue-task-notification-system-that-shows-pop-up-alerts-to-employees-when-they-have-incomplete-tasks-past-their-due-date",
+      "title": "Implement an overdue task notification system that shows pop-up alerts to employees when they have incomplete tasks past their due date",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-founder-notification-system-that-alerts-the-founder-when-employees-have-overdue-incomplete-tasks-showing-which-tasks-and-which-employees",
+      "title": "Create a founder notification system that alerts the founder when employees have overdue incomplete tasks, showing which tasks and which employees",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-visual-theme-with-warm-professional-colors-avoid-blue-and-purple-clear-typography-and-a-clean-modern-layout-suitable-for-a-task-management-platform-that-emphasizes-clarity-and-productivity",
+      "title": "Design a cohesive visual theme with warm, professional colors (avoid blue and purple), clear typography, and a clean modern layout suitable for a task management platform that emphasizes clarity and productivity",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-createtaskmodal-component-to-include-a-reminder-date-picker-input-field-that-allows-founders-to-set-when-employees-should-be-reminded-about-the-task",
+      "title": "Update the CreateTaskModal component to include a reminder date picker input field that allows founders to set when employees should be reminded about the task",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-createtaskmodal-component-to-include-a-priority-dropdown-selector-with-options-for-low-medium-high-and-critical-priority-levels",
+      "title": "Update the CreateTaskModal component to include a priority dropdown selector with options for Low, Medium, High, and Critical priority levels",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-priority-level-on-all-task-card-components-tasklist-employeetaskcard-tasksbyprojectview-tasksbyemployeeview-using-visual-indicators-such-as-colored-badges-or-icons-that-clearly-differentiate-priority-levels",
+      "title": "Display the priority level on all task card components (TaskList, EmployeeTaskCard, TasksByProjectView, TasksByEmployeeView) using visual indicators such as colored badges or icons that clearly differentiate priority levels",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-reminder-date-on-all-task-card-components-alongside-the-due-date-clearly-labeled-to-distinguish-it-from-the-due-date",
+      "title": "Display the reminder date on all task card components alongside the due date, clearly labeled to distinguish it from the due date",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-sorting-and-filtering-capabilities-to-the-founder-dashboard-and-task-views-to-allow-filtering-tasks-by-priority-level-and-sorting-by-reminder-date-due-date-or-priority",
+      "title": "Add sorting and filtering capabilities to the founder dashboard and task views to allow filtering tasks by priority level and sorting by reminder date, due date, or priority",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-time-tracking-functionality-to-tasks-allowing-employees-to-log-hours-worked-on-each-task-with-start-time-end-time-and-total-duration-calculations",
+      "title": "Add time tracking functionality to tasks allowing employees to log hours worked on each task with start time, end time, and total duration calculations",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-task-comments-and-activity-feed-allowing-team-members-to-add-comments-updates-and-notes-to-tasks-with-timestamps-and-user-attribution",
+      "title": "Implement task comments and activity feed allowing team members to add comments, updates, and notes to tasks with timestamps and user attribution",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-file-attachment-support-to-tasks-allowing-users-to-upload-and-associate-documents-images-and-files-with-tasks",
+      "title": "Add file attachment support to tasks allowing users to upload and associate documents, images, and files with tasks",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-task-dependencies-system-allowing-founders-to-set-predecessor-tasks-that-must-be-completed-before-dependent-tasks-can-start",
+      "title": "Create task dependencies system allowing founders to set predecessor tasks that must be completed before dependent tasks can start",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-recurring-tasks-feature-allowing-founders-to-create-tasks-that-repeat-on-daily-weekly-or-monthly-schedules",
+      "title": "Implement recurring tasks feature allowing founders to create tasks that repeat on daily, weekly, or monthly schedules",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-task-templates-feature-allowing-founders-to-save-frequently-used-task-configurations-as-templates-for-quick-task-creation",
+      "title": "Add task templates feature allowing founders to save frequently used task configurations as templates for quick task creation",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-gantt-chart-view-for-projects-showing-task-timelines-dependencies-and-progress-in-a-visual-timeline-format",
+      "title": "Create Gantt chart view for projects showing task timelines, dependencies, and progress in a visual timeline format",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-team-member-workload-view-showing-task-distribution-and-capacity-utilization-across-all-employees",
+      "title": "Implement team member workload view showing task distribution and capacity utilization across all employees",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-custom-task-fields-feature-allowing-founders-to-define-additional-metadata-fields-specific-to-their-workflow-needs",
+      "title": "Add custom task fields feature allowing founders to define additional metadata fields specific to their workflow needs",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-reports-and-analytics-page-showing-project-metrics-including-completion-rates-average-task-duration-on-time-delivery-percentage-and-team-productivity-trends",
+      "title": "Create reports and analytics page showing project metrics including completion rates, average task duration, on-time delivery percentage, and team productivity trends",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-modify-the-profilesetupmodal-component-to-include-a-role-type-selection-dropdown-for-employees-allowing-them-to-choose-between-teacher-and-admin-during-profile-setup",
+      "title": "Modify the ProfileSetupModal component to include a role type selection dropdown for employees, allowing them to choose between 'Teacher' and 'Admin' during profile setup",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-user-profile-page-or-settings-section-where-employees-can-view-and-update-their-role-type-teacher-or-admin-after-initial-profile-setup",
+      "title": "Add a user profile page or settings section where employees can view and update their role type (teacher or admin) after initial profile setup",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-employee-s-role-type-teacher-or-admin-in-the-layout-component-s-user-profile-section-in-the-header",
+      "title": "Display the employee's role type (teacher or admin) in the Layout component's user profile section in the header",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-comprehensive-founder-dashboard-overview-section-that-displays-aggregated-overall-progress-metrics-across-all-projects-including-total-tasks-count-completed-tasks-count-overall-completion-percentage-and-active-projects-count",
+      "title": "Create a comprehensive founder dashboard overview section that displays aggregated overall progress metrics across all projects including total tasks count, completed tasks count, overall completion percentage, and active projects count",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-task-assignment-column-or-section-to-the-founder-dashboard-that-displays-a-table-or-list-view-showing-which-employee-is-assigned-to-which-task-including-task-title-project-name-assigned-employee-name-completion-date-and-priority-level",
+      "title": "Add a dedicated task assignment column or section to the founder dashboard that displays a table or list view showing which employee is assigned to which task, including task title, project name, assigned employee name, completion date, and priority level",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-access-control-restrictions-on-the-employee-task-view-mytaskspage-to-ensure-employees-can-only-see-their-own-assigned-tasks-and-cannot-view-tasks-assigned-to-other-employees",
+      "title": "Implement access control restrictions on the employee task view (MyTasksPage) to ensure employees can only see their own assigned tasks and cannot view tasks assigned to other employees",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-work-submission-functionality-for-employees-allowing-them-to-submit-their-completed-work-for-a-task-which-updates-the-task-status-to-completed-and-records-the-submission-timestamp",
+      "title": "Add work submission functionality for employees allowing them to submit their completed work for a task, which updates the task status to completed and records the submission timestamp",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Task assignment system to assign tasks to team members",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Project management to organize tasks into projects",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Due date tracking for tasks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Progress tracking to see what team members are working on and their progress percentage",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Dashboard view showing overall progress reports",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Notification system with pop-ups for employees when tasks are overdue",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Founder notification when employees have not completed tasks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add reminder functionality to tasks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add priority levels to tasks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add a reminder date field to the task data model in the backend that stores when users should be reminded about a task, allowing it to be set independently from the due date",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add a priority field to the task data model in the backend that supports priority levels (e.g., Low, Medium, High, Critical)",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Add user profile system where employees can select their role (teacher or admin) upon login",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Update the backend user profile data model to include a 'roleType' field that stores whether an employee is a 'teacher' or 'admin', separate from the existing 'role' field that distinguishes founders from employees",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Enhanced founder dashboard with overall progress view, employee-task assignments column, project creator visibility, completion dates, and priority levels",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Restrict employee view to only their own assigned tasks (cannot see other employees' work)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add employee work submission functionality with completion status tracking",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Team Task Manager",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
